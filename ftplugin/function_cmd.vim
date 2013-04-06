@@ -8,7 +8,7 @@ let b:did_ftplugin = 1
 let cpo_save = &cpo                                                                                                                                                                                            
 set cpo-=C      
 
-if !b:0
+if !b:b0
     command! GoToFunctionFunc  exec 'Function '.matchlist(getline('.'), '^function\s\+\(\%(<lt>SNR>\d\+_\)\?\w\+\)')[1]
     setlocal stl=Functions\ list:\ %{matchstr(getline('.'),'\\(^function\\s\\+\\(<SNR>\\d\\+_\\)\\?\\)\\@<=\\w\\+')},\ defined\ in:\ %{Line2File(getline('.'))}%=%-13(%l,%c%V%)%P
     map <buffer> <2-LeftMouse> :GoToFunctionFunc<CR>

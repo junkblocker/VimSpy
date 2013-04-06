@@ -6,7 +6,7 @@ if version < 600
 elseif exists("b:current_syntax")
     finish
 endif
-if b:0
+if b:b0
     try
         %s/^\d\+//
         %s/^\s*function\s\+<SNR>\d\+_/function s:/

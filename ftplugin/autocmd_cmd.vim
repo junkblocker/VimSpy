@@ -8,7 +8,7 @@ let b:did_ftplugin = 1
 let cpo_save = &cpo                                                                                                                                                                                            
 set cpo-=C      
 
-if !b:0
+if !b:b0
     map <buffer> <2-LeftMouse> :GoToFunctionCmd<CR>
     map <buffer> <CR> :GoToFunctionCmd<CR>
 endif

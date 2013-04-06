@@ -37,7 +37,7 @@ function! s:CommandOutputToBuffer(cmd,...)
     endif
     let b:cmd = cmd
     let b:args = copy(a:000)
-    let b:[0] = a:0
+    let b:b0 = a:0
     let cmd = substitute(cmd, '^[aivnoscx]\(nore\)\?me\%[nu\]', 'menu', '')
     let cmd = substitute(cmd, '^[aivnoscxl]map', 'map', '')
     let cmd = substitute(cmd, '^\(\(no\|nno\?\|vno\?\|xno\?\|ono\|no\|ino\|lno\?\|cno\)\%[remap\]\|snor\%[emap\]\)', 'map', '')
