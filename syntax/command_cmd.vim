@@ -7,7 +7,7 @@ elseif exists("b:current_syntax")
   finish
 endif
 "set ft=vim
-"syn region commandTitle start='^\s*Name\s\+Args\s\+Range\>' end='\<Complete\s\+Definition$' keepend 
+"syn region commandTitle start='^\s*Name\s\+Args\s\+Range\>' end='\<Complete\s\+Definition$' keepend
 syn region commandSpecialChar start='<' end='>' keepend contains=commandSubst
 syn match commandSubst '<\([fq]-\)\?\(line[12]\|bang\|count\|reg\|args\|lt\)>' contained
 syn match commandName contained '\a\w*'
@@ -21,7 +21,7 @@ syn match commandRange '\(\s\+\([%.]\|\d\+c\)\)\?' nextgroup=commandComplete con
 syn match commandComplete '\(\s\+\(augroup\|buffer\|command\|dir\|environment\|event\|expression\|file\|shellcmd\|function\|help\|highlight\|mapping\|menu\|option\|tag\|tag_listfiles\|var\|custom\|customlist\)\>\)\?\s\+' nextgroup=commandDefinition contained
 syn match commandDefinition '.*' contains=@vimSyntax contained
 syn include @vimSyntax $VIMRUNTIME/syntax/vim.vim
-syn match vimScriptFunc '<SNR>\d\+_\w\+' containedin=commandDefinition 
+syn match vimScriptFunc '<SNR>\d\+_\w\+' containedin=commandDefinition
 syn match vimSNR   '<SNR>' containedin=vimScriptFunc nextgroup=vimScriptNr
 syn match vimScriptNr '\d\+_' contained nextgroup=vimUserFunc1
 syn match vimUserFunc1 '\a\w*' contained
@@ -40,7 +40,7 @@ if version >= 508 || !exists("did_command_cmd_syn_inits")
   else
     command -nargs=+ HiLink hi def link <args>
   endif
-  HiLink commandName        PreProc 
+  HiLink commandName        PreProc
   HiLink commandArgs        vimUserAttrb
   HiLink commandComplete    vimUserAttrb
   HiLink commandRange       vimUserAttrb
@@ -52,4 +52,4 @@ if version >= 508 || !exists("did_command_cmd_syn_inits")
   HiLink vimUserFunc1       Identifier
   delcommand HiLink
 endif
-let b:current_syntax = "command"
+let b:current_syntax = "command_cmd"

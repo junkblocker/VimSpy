@@ -12,14 +12,14 @@ endif
 "syn match autocmdTitle 'Name\s\+Args\s\+Range\s\+Complete\s\+Definition'
 syn match autocmdListTitle '\%1l.*'
 syn region autocmdListBody start='^\%2l' end='\%$'
-syn match autocmdGroup '^\w\+\s\+\w\+' containedin=autocmdListBody 
-syn match autocmdEvent '^\w\+$' containedin=autocmdListBody 
+syn match autocmdGroup '^\w\+\s\+\w\+' containedin=autocmdListBody
+syn match autocmdEvent '^\w\+$' containedin=autocmdListBody
 syn match autocmdEvent '\w\+$' containedin=autocmdGroup contained
 syn match autocmdGroupName '^\w\+' containedin=autocmdGroup contained
 syn match autocmdMatchLine '^\s\{4\}\S\+\(\n\s\{5,\}\S\)\?.*' containedin=autocmdListBody
 syn match autocmdMatch '^\s\{4\}\S\+\(\n\s\{5,\}\)\?' containedin=autocmdMatchLine nextgroup=autocmdVimScript contained
-syn match autocmdVimScript '.*' contains=@vimSyntax contained 
-"syn match autocmdVimScript '^\s\{5,\}.*' contains=@vimSyntax containedin=autocmdListBody contained 
+syn match autocmdVimScript '.*' contains=@vimSyntax contained
+"syn match autocmdVimScript '^\s\{5,\}.*' contains=@vimSyntax containedin=autocmdListBody contained
 syn include @vimSyntax $VIMRUNTIME/syntax/vim.vim
 
 " Define the default highlighting.
@@ -32,10 +32,10 @@ if version >= 508 || !exists("did_autocmd_cmd_syn_inits")
   else
     command -nargs=+ HiLink hi def link <args>
   endif
-  HiLink autocmdListTitle   Title 
-  HiLink autocmdEvent       vimAutoEvent 
+  HiLink autocmdListTitle   Title
+  HiLink autocmdEvent       vimAutoEvent
   HiLink autocmdGroupName   Identifier
   HiLink autocmdMatch       PreProc
   delcommand HiLink
 endif
-let b:current_syntax = "autocmd"
+let b:current_syntax = "autocmd_cmd"

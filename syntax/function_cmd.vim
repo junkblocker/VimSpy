@@ -13,18 +13,18 @@ if b:b0
     catch /^Vim\%((\a\+)\)\=:E/
     endtry
     silent set ft=vim
-    silent normal G=gg 
+    silent normal G=gg
     finish
 else
     syn match func '^fu\%[nction]\>'
     syn match funcSpecialChar '<[^<>]\{2,\}>'
-    syn region funcDef start='[[:alnum:]_#]\+(' end=')' keepend contains=funcPrefix,funcName,funcArgs 
+    syn region funcDef start='[[:alnum:]_#]\+(' end=')' keepend contains=funcPrefix,funcName,funcArgs
     syn region funcArgs start="(" end=")"he=e-1 contained contains=funcArg,funcOper
     syn match funcOper '[(),]'
     syn match funcArg '\w\+' contained
     syn match funcArg '\.\.\.' contained
     syn match funcPrefix '\<\d\+_' contained nextgroup=funcName
-    syn match funcName '\a[[:alnum:]_#]*\>' contained 
+    syn match funcName '\a[[:alnum:]_#]*\>' contained
 endif
 " Define the default highlighting.
 " For version 5.x and earlier, only when not done already.
@@ -41,7 +41,7 @@ if version >= 508 || !exists("did_function_cmd_syn_inits")
     HiLink funcOper Keyword
     HiLink funcPrefix Special
     HiLink funcName Identifier
-    HiLink funcSpecialChar Macro 
+    HiLink funcSpecialChar Macro
     delcommand HiLink
 endif
-let b:current_syntax = "menu"
+let b:current_syntax = "function_cmd"

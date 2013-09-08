@@ -21,4 +21,4 @@ if version >= 508 || !exists("did_hi_cmd_syn_inits")
   HiLink hiAttr SpecialKey
   delcommand HiLink
 endif
-let b:current_syntax = "menu"
+let b:current_syntax = "highlight_cmd"

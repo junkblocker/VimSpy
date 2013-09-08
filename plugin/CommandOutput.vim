@@ -18,7 +18,7 @@ function! s:CommandOutputToBuffer(cmd,...)
         let cmd = 'autocmd'
     else
         let cmd = a:cmd
-        
+
     endif
     exec 'new '.cmd.(a:0? '\ '.a:1 : '')
     setlocal buftype=nofile
@@ -46,7 +46,7 @@ function! s:CommandOutputToBuffer(cmd,...)
     setlocal nomodifiable
 endf
 function! ParseHi(hi)
-    return filter(map(split(a:hi,'\n'), 'matchlist(v:val, ''\(^\w\+\)\s\+xxx\s\+\(cleared\)\?\(links to \)\?\(.*\)'')'), 'len(v:val) && v:val[2] == ""') 
+    return filter(map(split(a:hi,'\n'), 'matchlist(v:val, ''\(^\w\+\)\s\+xxx\s\+\(cleared\)\?\(links to \)\?\(.*\)'')'), 'len(v:val) && v:val[2] == ""')
 endf
 function! ApplyHi(hi)
     let hi = ParseHi(a:hi)
@@ -67,7 +67,7 @@ function! OpenFunc(...)
     for name in a:000
         let name = substitute(name, '^\('.s:funcPrefixRe.'\w\+\>\).*', '\1', '')
         if name =~ '^s:'
-            let name = matchstr(CommandOutput('function'), s:funcPrefixRe.substitute(name, '^s:', '', '')) 
+            let name = matchstr(CommandOutput('function'), s:funcPrefixRe.substitute(name, '^s:', '', ''))
             if name == ''
                 return
             endif
@@ -99,7 +99,7 @@ endf
 command! GoToFunction  call GotoFunction(line('.'), col('.'))
 
 command! -nargs=* -complete=command     CommandOutput silent call s:CommandOutputToBuffer(<f-args>)
-command! -nargs=* -complete=highlight   Syntax      CommandOutput syntax <args>
+command! -nargs=* -complete=highlight   Syntax      CommandOutput syntax list <args>
 command! -nargs=* -complete=highlight   Highlight   CommandOutput hi <args>
 command! -nargs=* -complete=function    Function    call OpenFunc(<f-args>)
 command! -nargs=* -complete=command     Command     CommandOutput command <args>
@@ -115,4 +115,5 @@ for char in extend(split('aivnoscxl', '.\@='), [''])
 endfor
 delcommand LMenu
 delcommand LNoreMenu
+
 

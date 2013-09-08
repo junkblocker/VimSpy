@@ -6,7 +6,7 @@ if version < 600
 elseif exists("b:current_syntax")
   finish
 endif
-syn match mapLine '^\s\+.*$' 
+syn match mapLine '^\s\+.*$'
 syn match mapTypedLine '^\w\+\s\+.*$'
 syn match mapBlankStart '^\s\+' containedin=mapLine nextgroup=mapKeySequence contained
 syn match mapType '^\w\+\s\+' containedin=mapTypedLine nextgroup=mapKeySequence contained
@@ -43,4 +43,4 @@ if version >= 508 || !exists("did_map_cmd_syn_inits")
   HiLink vimUserFunc1       Identifier
 delcommand HiLink
 endif
-let b:current_syntax = "map"
+let b:current_syntax = "map_cmd"
