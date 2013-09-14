@@ -1,19 +1,19 @@
 "   Copyright (c) 2007, Michael Shvarts <shvarts@akmosoft.com>
 function! CommandOutput(cmd,...)
-    redir => output
+    redir => l:output
     silent exec a:cmd.' '.join(a:000,' ')
     redir END
-    return output
+    return l:output
 
 endf
 function! s:CommandOutputToBuffer(cmd,...)
-    let output = call('CommandOutput',[a:cmd] + a:000)
+    let l:output = call('CommandOutput',[a:cmd] + a:000)
     if a:cmd =~ '^sy\%[ntax]\>'
         let cmd = 'syntax'
         let hi = CommandOutput('hi')
     elseif a:cmd =~ '^hi\%[ghlight]\>'
         let cmd = 'highlight'
-        let hi = output
+        let hi = l:output
     elseif a:cmd =~ '^au\%[togroup]'
         let cmd = 'autocmd'
     else
@@ -25,13 +25,11 @@ function! s:CommandOutputToBuffer(cmd,...)
     setlocal bufhidden=delete
     setlocal noswapfile
     setlocal modifiable
-    let clip = @"
-    let @" = output
-    normal Pgg
+    put! =l:output
+    normal! gg
     if getline(1) =~ '^\s*$'
-        normal dd
+        normal! dd
     endif
-    let @"=clip
     if exists('hi')
         let b:hi = hi
     endif
