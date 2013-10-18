@@ -7,6 +7,7 @@ function! CommandOutput(cmd,...)
 
 endf
 function! s:CommandOutputToBuffer(cmd,...)
+    " Removes empty lines at the top
     let l:output = call('CommandOutput',[a:cmd] + a:000)
     if a:cmd =~ '^sy\%[ntax]\>'
         let cmd = 'syntax'
@@ -18,7 +19,6 @@ function! s:CommandOutputToBuffer(cmd,...)
         let cmd = 'autocmd'
     else
         let cmd = a:cmd
-
     endif
     exec 'new '.cmd.(a:0? '\ '.a:1 : '')
     setlocal buftype=nofile
@@ -27,9 +27,9 @@ function! s:CommandOutputToBuffer(cmd,...)
     setlocal modifiable
     put! =l:output
     normal! gg
-    if getline(1) =~ '^\s*$'
-        normal! dd
-    endif
+    while line('$') > 1 && getline(1) =~ '^\s*$'
+        0 delete _
+    endwhile
     if exists('hi')
         let b:hi = hi
     endif
