@@ -1,10 +1,12 @@
 "   Copyright (c) 2007, Michael Shvarts <shvarts@akmosoft.com>
 function! CommandOutput(cmd,...)
+    if exists('*execute')
+        return execute(a:cmd.' '.join(a:000,' '))
+    endif
     redir => l:output
     silent exec a:cmd.' '.join(a:000,' ')
     redir END
     return l:output
-
 endf
 function! s:CommandOutputToBuffer(cmd,...)
     " Removes empty lines at the top
@@ -113,5 +115,3 @@ for char in extend(split('aivnoscxl', '.\@='), [''])
 endfor
 delcommand LMenu
 delcommand LNoreMenu
-
-
